@@ -1,39 +1,55 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Vue APP</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        
-        <form class="form-inline my-2 my-lg-0">
-          <input
-            class="form-control mr-sm-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-            Search
-          </button>
-        </form>
+    <navbar @searchItem="search"></navbar>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-9">
+          <inventory @newItemAdded="addCartItem" :items="items"></inventory>
+        </div>
+        <div class="col-sm-3">
+          <cart @removeItem="removeItem" :items="carts"> </cart>
+        </div>
       </div>
-    </nav>
+    </div>
   </div>
 </template>
 
 <script>
+import Navbar from "./components/Navbar.vue";
+import Cart from "./components/Cart.vue";
+import Inventory from "./components/Inventory.vue";
+import data from "./data.js";
 export default {
-  name: "app",
+  components: { Navbar, Cart, Inventory },
+  data() {
+    return {
+      items: [],
+      carts: [],
+    }
+  },
+  mounted() {
+    this.items = data
+  },
+  methods :{
+      addCartItem(item) {
+          this.carts.push(item)
+      },
+      removeItem(index){
+        this.carts.splice(index,1)
+      },
+      search(keyword){
+         this.items = data.filter(item => {
+          return item.title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1
+        })
+      }
+      
+      
+  }
 };
 </script>
+
+<style scoped>
+.container {
+  margin-top: 10px;
+}
+</style>
