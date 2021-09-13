@@ -10,15 +10,23 @@ import 'popper.js/dist/popper.min.js';
 import 'bootstrap/dist/js/bootstrap.min.js';
 // import './plugins/bootstrap-vue'
 
-
-
-
-
 Vue.config.productionTip = false
+
+import VueRouter from 'vue-router'
+
+Vue.use(VueRouter)
+
+import { routes } from './router/index.js'
+
+const router = new VueRouter({
+  // mode : 'history',
+  routes
+});
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  router,
   components: { App },
   template: '<App/>'
 })

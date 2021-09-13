@@ -8,7 +8,12 @@
     <li v-for="(item, index) in items" :key="index" class="list-group-item">
       <span class="item-name">{{ item.title }}</span>
       <span class="item-price ml-5">${{ item.price }}</span>
-      <button class="btn btn-sm btn-danger float-right" @click="removeItem(index)">X</button>
+      <button
+        class="btn btn-sm btn-danger float-right"
+        @click="removeItem(index)"
+      >
+        X
+      </button>
     </li>
     <hr />
     <li class="list-group-item">
@@ -40,11 +45,11 @@ export default {
       );
     },
   },
-  methods : {
-    removeItem(index){
-      this.$emit('removeItem',index)
-    }
-  }
+  methods: {
+    removeItem(index) {
+      this.$emit("removeItem", index);
+    },
+  },
 };
 </script>
 

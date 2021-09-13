@@ -12,7 +12,8 @@
   "dependencies": {
     "@popperjs/core": "^2.9.3",
     "bootstrap-vue": "^2.1.0",
-    "vue": "^2.5.2"
+    "vue": "^2.5.2",
+    "vue-router": "^3.5.2"
   },
   "devDependencies": {
     "@babel/polyfill": "^7.7.0",
