@@ -3,7 +3,26 @@
 </template>
 
 <script>
-export default {}
+  import axios from 'axios'
+export default {
+  data(){
+    return {
+      item : []
+    }
+  },
+  mounted(){
+    this.fetchItem();
+  },
+  methods : {
+    fetchItem(){
+      var self = this;
+      axios.get(`http://localhost/ftdev/api/item/${this.$route.params.id}`).then((response)=>{
+        // console.log(response);
+        self.item = response.data;
+      });
+    },
+  }
+}
   
 </script>
 
