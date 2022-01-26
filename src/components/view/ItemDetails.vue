@@ -1,31 +1,48 @@
 <template>
-  <h4>Hello vue route {{$route.params.id}}</h4>
+  <div v-if="item" class="row">
+    <div class="col-sm-6">
+      <img :src="item.photo" alt="Photo">
+    </div>
+    <div class="col-sm-6">
+      <h4>{{ item.title }}</h4>
+      <p v-text>{{ item.description }}</p>
+      <div class="card-footer">
+        <span>$ {{ item.price }}</span>
+         <a @click="addToCart(item)" class="btn btn-primary">+ Add</a>
+      </div>
+
+    </div>
+  </div>
+  <h3 v-else>Loading...</h3>
 </template>
 
 <script>
-  import axios from 'axios'
+import axios from "axios"
 export default {
-  data(){
+  data() {
     return {
-      item : []
+      item: null
     }
   },
-  mounted(){
+  mounted() {
     this.fetchItem();
   },
-  methods : {
-    fetchItem(){
-      var self = this;
-      axios.get(`http://localhost/ftdev/api/item/${this.$route.params.id}`).then((response)=>{
-        // console.log(response);
-        self.item = response.data;
-      });
+  methods: {
+    fetchItem() {
+      var self = this
+      axios.get('http://localhost/ftdev/api/item/'+ this.$route.params.id).then(response => {
+        console.log(response);
+        self.item = response.data
+      })
     },
+    addToCart(item){
+      this.$store.commit('addToCart',item)
+    }
+    
   }
 }
-  
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
+
 </style>

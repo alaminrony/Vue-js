@@ -14,7 +14,11 @@ Vue.config.productionTip = false
 
 import VueRouter from 'vue-router'
 
+
+
 Vue.use(VueRouter)
+
+
 
 import { routes } from './router/index.js'
 
@@ -23,10 +27,19 @@ const router = new VueRouter({
   routes
 });
 
+import Vuex from 'vuex';
+
+Vue.use(Vuex)
+
+import {storage} from './store/index'
+
+const store = new Vuex.Store(storage);
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Vue APP</a>
+    <router-link class="navbar-brand" :to="{path:'/'}"> Super Store</router-link>
     <button
       class="navbar-toggler"
       type="button"
@@ -31,6 +31,7 @@
 </template>
 
 <script>
+  import axios from "axios"
 export default {
   data(){
     return {
@@ -39,7 +40,11 @@ export default {
   },
   methods : {
     search(){
-      this.$emit('searchItem',this.keyword)
+      axios.get('http://localhost/ftdev/api/item/search/'+ this.keyword).then(response => {
+        console.log(response);
+        // self.item = response.data
+      })
+      // this.$emit('searchItem',this.keyword)
     }
   }
 }
