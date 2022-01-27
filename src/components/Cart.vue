@@ -20,6 +20,10 @@
       <span class="item-name">Total</span>
       <span class="item-price float-right">${{ totalPrice.toFixed(2) }}</span>
     </li>
+
+    <li v-if="" class="list-group-item">
+      <button @click="clearCart" class="btn btn-block btn-success">Checkout</button>
+    </li>
   </ul>
 </template>
 
@@ -54,6 +58,12 @@ export default {
       // this.$emit("removeItem", index);
       this.$store.commit("removeItem", index);
     },
+    clearCart(){
+      if(confirm('Are you sure, you want to delete this!!')){
+        this.$store.commit('clearCart')
+      }
+      
+    }
   },
 };
 </script>

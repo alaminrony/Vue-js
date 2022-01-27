@@ -40,7 +40,9 @@ export default {
   },
   methods : {
     search(){
+      var self = this
       axios.get('http://localhost/ftdev/api/item/search/'+ this.keyword).then(response => {
+        self.$store.commit('setInventory',response.data)
         console.log(response);
         // self.item = response.data
       })

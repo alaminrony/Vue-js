@@ -38,14 +38,14 @@ export default {
     },
     methods :{
          addToCart(item){
-          this.$store.commit('addToCart',item);
+          this.$store.dispatch('addToCart',item);
            // this.$emit('newItemAdded',item)
          },
          fetchInventory(){
           var self = this;
           axios.get('http://localhost/ftdev/api/items').then(response =>{
               // self.items = response.data,
-              this.$store.commit('setInventory',response.data)
+              self.$store.commit('setInventory',response.data)
               self.loading = false
             
           })
